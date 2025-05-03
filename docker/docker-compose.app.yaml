@@ -17,8 +17,8 @@ services:
       - mysql-master
       - mysql-slave
     networks:
-      - db-net
+      - app-net
 
 networks:
-  db-net:
+  app-net:
     external: true  # networks: external: true 로 DB쪽 네트워크에 연결
