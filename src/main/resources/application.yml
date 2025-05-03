@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: master-slave-test
+
+  datasource:
+    master:
+      url: jdbc:mysql://localhost:3306/master_db
+      username: root
+      password: masterpass
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      url: jdbc:mysql://localhost:3307/slave_db
+      username: root
+      password: slavepass
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      initialization-fail-timeout: 60000
+      connection-timeout: 30000
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: false
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

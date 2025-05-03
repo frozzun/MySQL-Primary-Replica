@@ -1,0 +1,24 @@
+services:
+  master-slave-test:
+    build:
+      context: ..
+      dockerfile: ../Dockerfile
+    container_name: backend
+    #    image: frozzun99/master-slave-test:latest
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_MASTER_URL: jdbc:mysql://mysql-master:3306/db
+      SPRING_DATASOURCE_SLAVE_URL: jdbc:mysql://mysql-slave:3306/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpw
+    depends_on:
+      - mysql-master
+      - mysql-slave
+    networks:
+      - db-net
+
+networks:
+  db-net:
+    external: true  # networks: external: true 로 DB쪽 네트워크에 연결
