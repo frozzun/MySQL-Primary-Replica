@@ -1,4 +1,4 @@
-# master-slave-test
+# MySQL-Primary-Replica toy project
 
 ### DB Master : 메인 프로세스 담당
 ### DB Slave : Master를 보조하는 Slave로 메인 프로세스 이외의 잡일 담당
