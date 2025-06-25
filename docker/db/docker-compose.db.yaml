@@ -1,8 +1,9 @@
 services:
   db-master:
+    container_name: db-master
     build:
-      context: ./
-      dockerfile: master/Dockerfile
+      context: ./master
+      dockerfile: Dockerfile
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
@@ -19,9 +20,10 @@ services:
       - app-net
   
   db-slave:
+    container_name: db-slave
     build:
-      context: ./
-      dockerfile: slave/Dockerfile
+      context: ./slave
+      dockerfile: Dockerfile
     restart: always
     environment:
 #      MYSQL_DATABASE: 'db'
@@ -44,4 +46,4 @@ volumes:
 
 networks:
   app-net:
-    driver: bridge
+    external: true

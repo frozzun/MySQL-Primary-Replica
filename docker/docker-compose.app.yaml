@@ -2,20 +2,17 @@ services:
   master-slave-test:
     build:
       context: ..
-      dockerfile: ../Dockerfile
+      dockerfile: Dockerfile
     container_name: backend
     #    image: frozzun99/master-slave-test:latest
     ports:
       - "8080:8080"
     restart: always
     environment:
-      SPRING_DATASOURCE_MASTER_URL: jdbc:mysql://mysql-master:3306/db
-      SPRING_DATASOURCE_SLAVE_URL: jdbc:mysql://mysql-slave:3306/db
+      SPRING_DATASOURCE_MASTER_URL: jdbc:mysql://db-master:3306/db
+      SPRING_DATASOURCE_SLAVE_URL: jdbc:mysql://db-slave:3306/db
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: rootpw
-    depends_on:
-      - mysql-master
-      - mysql-slave
+      SPRING_DATASOURCE_PASSWORD: password
     networks:
       - app-net
 
